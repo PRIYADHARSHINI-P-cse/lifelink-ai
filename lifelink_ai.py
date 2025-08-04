@@ -5,55 +5,40 @@ st.set_page_config(page_title="LifeLink AI", layout="centered")
 # Custom background and styling
 st.markdown("""
     <style>
-    /* Background image and layout */
+    /* Set overall app background */
     .stApp {
-        background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)),
+        background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)),
                     url('https://images.pexels.com/photos/12193090/pexels-photo-12193090.jpeg');
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
     }
 
-    /* Main container styles */
+    /* Style main content container */
     .main .block-container {
-        background-color: rgba(255, 255, 255, 0.96);
+        background-color: white; /* White background */
+        color: black !important; /* Black text for content */
         padding: 2.5rem 2rem;
         border-radius: 20px;
         box-shadow: 0 8px 24px rgba(0,0,0,0.2);
         max-width: 760px;
         margin: 6vh auto;
-        color: black !important;
     }
 
-    /* Set text color to black in main content */
-    .main .block-container h1,
-    .main .block-container h2,
-    .main .block-container h3,
-    .main .block-container h4,
-    .main .block-container h5,
-    .main .block-container h6,
-    .main .block-container p,
-    .main .block-container label,
-    .main .block-container .stTextInput > label,
-    .main .block-container .stSelectbox > label,
-    .main .block-container .stTextArea > label {
-        color: black !important;
-    }
-
-    /* Sidebar text white */
-    .css-1d391kg, .css-1v0mbdj, .css-10trblm, .css-1cpxqw2 {
+    /* Sidebar text color to white */
+    .css-1d391kg, .css-1v0mbdj, .css-pkbazv, .css-1c7y2kd {
         color: white !important;
     }
 
-    /* Sidebar background darker for contrast */
-    section[data-testid="stSidebar"] {
-        background-color: rgba(0, 0, 0, 0.65);
+    /* Heading colors */
+    h1, h2, h3, h4, h5, h6 {
+        color: black !important;
     }
 
-    /* Buttons */
+    /* Button styles */
     .stButton>button {
         background-color: #b1003f;
-        color: white !important;
+        color: black;
         border: none;
         border-radius: 10px;
         padding: 0.5rem 1.5rem;
@@ -186,6 +171,7 @@ elif page == "About":
 # Footer
 st.markdown("---")
 st.caption("© 2025 LifeLink AI — Built for Humanity")
+
 
 
 
