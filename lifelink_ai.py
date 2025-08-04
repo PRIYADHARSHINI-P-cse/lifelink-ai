@@ -5,6 +5,7 @@ st.set_page_config(page_title="LifeLink AI", layout="centered")
 # Custom background and styling
 st.markdown("""
     <style>
+    /* Background image and layout */
     .stApp {
         background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)),
                     url('https://images.pexels.com/photos/12193090/pexels-photo-12193090.jpeg');
@@ -13,6 +14,7 @@ st.markdown("""
         background-position: center;
     }
 
+    /* Main container styles */
     .main .block-container {
         background-color: rgba(255, 255, 255, 0.96);
         padding: 2.5rem 2rem;
@@ -23,6 +25,7 @@ st.markdown("""
         color: black !important;
     }
 
+    /* Set text color to black in main content */
     .main .block-container h1,
     .main .block-container h2,
     .main .block-container h3,
@@ -37,6 +40,17 @@ st.markdown("""
         color: black !important;
     }
 
+    /* Sidebar text white */
+    .css-1d391kg, .css-1v0mbdj, .css-10trblm, .css-1cpxqw2 {
+        color: white !important;
+    }
+
+    /* Sidebar background darker for contrast */
+    section[data-testid="stSidebar"] {
+        background-color: rgba(0, 0, 0, 0.65);
+    }
+
+    /* Buttons */
     .stButton>button {
         background-color: #b1003f;
         color: white !important;
@@ -45,11 +59,13 @@ st.markdown("""
         padding: 0.5rem 1.5rem;
         font-size: 1rem;
     }
+
     .stButton>button:hover {
         background-color: #870031;
     }
     </style>
 """, unsafe_allow_html=True)
+
 
 
 
@@ -170,5 +186,6 @@ elif page == "About":
 # Footer
 st.markdown("---")
 st.caption("© 2025 LifeLink AI — Built for Humanity")
+
 
 
