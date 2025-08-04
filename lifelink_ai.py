@@ -11,7 +11,6 @@ st.markdown("""
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
-        color: black !important;
     }
 
     .main .block-container {
@@ -24,8 +23,17 @@ st.markdown("""
         color: black !important;
     }
 
-    h1, h2, h3, h4, h5, h6, p, label, .stTextInput > label,
-    .stSelectbox > label, .stTextArea > label {
+    .main .block-container h1,
+    .main .block-container h2,
+    .main .block-container h3,
+    .main .block-container h4,
+    .main .block-container h5,
+    .main .block-container h6,
+    .main .block-container p,
+    .main .block-container label,
+    .main .block-container .stTextInput > label,
+    .main .block-container .stSelectbox > label,
+    .main .block-container .stTextArea > label {
         color: black !important;
     }
 
@@ -42,6 +50,7 @@ st.markdown("""
     }
     </style>
 """, unsafe_allow_html=True)
+
 
 
 # Sidebar
@@ -161,4 +170,5 @@ elif page == "About":
 # Footer
 st.markdown("---")
 st.caption("© 2025 LifeLink AI — Built for Humanity")
+
 
