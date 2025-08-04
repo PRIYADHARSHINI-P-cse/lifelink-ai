@@ -25,7 +25,7 @@ st.markdown("""
     h1, h2, h3 { color: #b1003f; }
     .stButton>button {
         background-color: #b1003f;
-        color: white;
+        color: black;
         border: none;
         border-radius: 10px;
         padding: 0.5rem 1.5rem;
@@ -41,11 +41,11 @@ st.markdown("""
 st.sidebar.title("🩸 LifeLink AI")
 page = st.sidebar.radio("Navigate", ["Home", "Find Donor", "Estimate Cost", "About"])
 
-# Title
+# Main Header
 st.title("🏥 LifeLink AI")
 st.subheader("Connecting Hope through AI for Thalassemia Support")
 
-# Page Content
+# Page: Home
 if page == "Home":
     st.markdown("""
     LifeLink AI is an AI-powered platform supporting Thalassemia patients in India.
@@ -58,6 +58,7 @@ if page == "Home":
     💡 Designed for the AI for Good Hackathon 2025 by Team CARE LINKERS
     """)
 
+# Page: Find Donor
 elif page == "Find Donor":
     st.header("🩸 Find a Blood Donor")
     st.markdown("Use our AI-assisted donor finder to connect with available matches near you.")
@@ -66,30 +67,35 @@ elif page == "Find Donor":
     city = st.text_input("Enter City or Pincode")
     urgency = st.selectbox("Urgency Level", ["", "Low", "Medium", "High"])
 
-    donor_db = {
-        "A+": {"Low": [("Anita Sharma", 91)], "Medium": [("Karan Joshi", 93)], "High": [("Riya Kapoor", 96)]},
-        "O-": {"Low": [("Nikhil Jain", 87)], "Medium": [("Shravan Reddy", 90)], "High": [("Ishaan Ali", 93)]},
-        # Add the rest as needed
-    }
-
     if st.button("🔍 Find Donors"):
         if not blood_group or not urgency or not city.strip():
-            st.error("⚠ Please fill all the required fields: Blood Group, City, and Urgency.")
+            st.error("⚠ Please fill in all the fields to find donors.")
         else:
+            donor_db = {
+                "A+": {"Low": [("Anita Sharma", 91)], "Medium": [("Karan Joshi", 93)], "High": [("Riya Kapoor", 96)]},
+                "A-": {"Low": [("Sneha Sinha", 88)], "Medium": [("Kritika Roy", 90)], "High": [("Pooja Reddy", 94)]},
+                "B+": {"Low": [("Ravi Shankar", 90)], "Medium": [("Sonia Bhatia", 92)], "High": [("Aditya Sen", 95)]},
+                "B-": {"Low": [("Mahesh Rao", 86)], "Medium": [("Gaurav Pillai", 89)], "High": [("Kriti Jain", 93)]},
+                "AB+": {"Low": [("Kabir Das", 88)], "Medium": [("Om Prakash", 91)], "High": [("Veena Iyer", 94)]},
+                "AB-": {"Low": [("Ritesh Sinha", 84)], "Medium": [("Sanya Mehra", 87)], "High": [("Akash Anand", 91)]},
+                "O+": {"Low": [("Suresh Krishnan", 89)], "Medium": [("Anjali Das", 91)], "High": [("Shreya Rao", 95)]},
+                "O-": {"Low": [("Nikhil Jain", 87)], "Medium": [("Shravan Reddy", 90)], "High": [("Ishaan Ali", 93)]}
+            }
+
             matches = donor_db.get(blood_group, {}).get(urgency, [])
             if matches:
-                st.success("Top AI‑matched donors near you:")
+                st.success("✅ Top AI‑matched donors near you:")
                 for donor, score in matches:
-                    st.markdown(f"✅ {donor} – Match Score: {score}%")
+                    st.markdown(f"- {donor} – Match Score: {score}%")
             else:
-                st.warning("No matches found for the selected criteria.")
+                st.warning("❗ No matches found for the selected criteria.")
 
     st.markdown("### 📞 Contact Details to Reach Donors")
     with st.form("contact_form"):
         name = st.text_input("Your Full Name *")
         email = st.text_input("Email Address *")
         phone = st.text_input("Phone Number *")
-        message = st.text_area("Additional Info (Optional)", placeholder="E.g., preferred time or patient info")
+        message = st.text_area("Additional Info (Optional)", placeholder="Eg: Preferred time to contact or patient details")
 
         submitted = st.form_submit_button("📬 Send Request")
         if submitted:
@@ -98,6 +104,7 @@ elif page == "Find Donor":
             else:
                 st.success(f"✅ Thank you {name}, your request has been shared with the donor coordinator.")
 
+# Page: Estimate Cost
 elif page == "Estimate Cost":
     st.header("💰 Treatment Cost Estimator")
     st.markdown("Get a detailed estimate for annual Thalassemia treatment costs.")
@@ -114,7 +121,7 @@ elif page == "Estimate Cost":
 
         st.success(f"Estimated Yearly Cost: ₹{yearly:,}")
         st.markdown(f"""
-        Detailed Breakdown:
+        #### Detailed Breakdown:
         - 💉 Monthly Transfusion Cost: ₹{monthly_cost:,}
         - 🗓 12-Month Total: ₹{yearly:,}
         - 🏥 Hospital Type: {hospital}
@@ -123,12 +130,13 @@ elif page == "Estimate Cost":
 
         ---
 
-        ### 🎯 You may be eligible for these aid programs:
+        ### 🎯 Suggested Aid Programs:
         - 🛡 Blood Warriors Fund – Offers subsidies for low-income families.
         - 💰 PM Health Assistance Scheme – Central aid for rare disease treatment.
         - 🏥 {state} State Insurance Program – Covers Thalassemia treatment in select hospitals.
         """)
 
+# Page: About
 elif page == "About":
     st.header("📘 About LifeLink AI")
     st.markdown("""
@@ -146,5 +154,3 @@ elif page == "About":
 # Footer
 st.markdown("---")
 st.caption("© 2025 LifeLink AI — Built for Humanity")
-
-
