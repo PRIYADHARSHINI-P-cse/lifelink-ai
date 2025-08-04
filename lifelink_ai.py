@@ -11,6 +11,7 @@ st.markdown("""
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
+        color: black !important;
     }
 
     .main .block-container {
@@ -20,12 +21,17 @@ st.markdown("""
         box-shadow: 0 8px 24px rgba(0,0,0,0.2);
         max-width: 760px;
         margin: 6vh auto;
+        color: black !important;
     }
 
-    h1, h2, h3 { color: #b1003f; }
+    h1, h2, h3, h4, h5, h6, p, label, .stTextInput > label,
+    .stSelectbox > label, .stTextArea > label {
+        color: black !important;
+    }
+
     .stButton>button {
         background-color: #b1003f;
-        color: black;
+        color: white !important;
         border: none;
         border-radius: 10px;
         padding: 0.5rem 1.5rem;
@@ -36,6 +42,7 @@ st.markdown("""
     }
     </style>
 """, unsafe_allow_html=True)
+
 
 # Sidebar
 st.sidebar.title("🩸 LifeLink AI")
@@ -154,3 +161,4 @@ elif page == "About":
 # Footer
 st.markdown("---")
 st.caption("© 2025 LifeLink AI — Built for Humanity")
+
