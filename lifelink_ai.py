@@ -2,49 +2,41 @@ import streamlit as st
 
 st.set_page_config(page_title="LifeLink AI", layout="centered")
 
-# Custom background and styling
+# Global CSS for white background and dark text
 st.markdown("""
     <style>
-        /* Set background image */
-        .stApp {
-            background: url("https://images.pexels.com/photos/12193090/pexels-photo-12193090.jpeg");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
+    .stApp {
+        background-color: white !important;
+        color: black !important;
+    }
 
-        /* Main content white with black text */
-        .main {
-            background-color: rgba(255, 255, 255, 0.85);
-            color: black;
-            padding: 2rem;
-            border-radius: 10px;
-        }
+    .main .block-container {
+        background-color: white !important;
+        padding: 2.5rem 2rem;
+        border-radius: 20px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        max-width: 760px;
+        margin: 6vh auto;
+    }
 
-        /* Sidebar background and text */
-        section[data-testid="stSidebar"] {
-            background-color: #1e1e2f;
-            color: black;
-        }
+    h1, h2, h3, h4, h5, h6, p, label, .css-1cpxqw2 {
+        color: black !important;
+    }
 
-        /* Ensure sidebar text is white */
-        .css-1v0mbdj, .css-10trblm, .stRadio > label {
-            color: white !important;
-        }
+    .stButton>button {
+        background-color: #b1003f;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 0.5rem 1.5rem;
+        font-size: 1rem;
+    }
 
-        /* Ensure main content headings and text are black */
-        .main h1, .main h2, .main h3, .main h4, .main h5, .main h6,
-        .main p, .main li, .main span {
-            color: black !important;
-        }
-
-        footer {
-            color: black !important;
-        }
+    .stButton>button:hover {
+        background-color: #870031;
+    }
     </style>
 """, unsafe_allow_html=True)
-
-
 
 # Sidebar
 st.sidebar.title("🩸 LifeLink AI")
@@ -66,6 +58,7 @@ if page == "Home":
 
     💡 Designed for the AI for Good Hackathon 2025 by Team CARE LINKERS
     """)
+
 elif page == "Find Donor":
     st.header("🩸 Find a Blood Donor")
     st.markdown("Use our AI-assisted donor finder to connect with available matches near you.")
@@ -75,57 +68,60 @@ elif page == "Find Donor":
     urgency = st.selectbox("Urgency Level", ["Low", "Medium", "High"])
 
     if st.button("🔍 Find Donors"):
-        donor_db = {
-            "A+": {
-                "Low": [("Anita Sharma", 91), ("Rohit Mehra", 87), ("Divya Iyer", 83)],
-                "Medium": [("Karan Joshi", 93), ("Nidhi Patel", 89), ("Amit Rao", 85)],
-                "High": [("Riya Kapoor", 96), ("Sarthak Jain", 92), ("Tanvi Verma", 90)]
-            },
-            "A-": {
-                "Low": [("Sneha Sinha", 88), ("Manoj Kaul", 85), ("Kavya Desai", 82)],
-                "Medium": [("Kritika Roy", 90), ("Jay Malhotra", 86), ("Farhan Ali", 84)],
-                "High": [("Pooja Reddy", 94), ("Rakesh Yadav", 91), ("Meera Das", 89)]
-            },
-            "B+": {
-                "Low": [("Ravi Shankar", 90), ("Leela Menon", 85), ("Nitin Deshpande", 83)],
-                "Medium": [("Sonia Bhatia", 92), ("Raghav Shetty", 89), ("Simran Gill", 86)],
-                "High": [("Aditya Sen", 95), ("Preeti Rawal", 91), ("Tushar Khanna", 88)]
-            },
-            "B-": {
-                "Low": [("Mahesh Rao", 86), ("Reena Paul", 84), ("Neha Kapoor", 81)],
-                "Medium": [("Gaurav Pillai", 89), ("Alisha Khan", 87), ("Arjun Singh", 85)],
-                "High": [("Kriti Jain", 93), ("Deepak Nair", 90), ("Zoya Abraham", 87)]
-            },
-            "AB+": {
-                "Low": [("Kabir Das", 88), ("Shruti Sen", 86), ("Devika Rao", 83)],
-                "Medium": [("Om Prakash", 91), ("Ishita Nair", 88), ("Yusuf Pathan", 85)],
-                "High": [("Veena Iyer", 94), ("Sameer Malhotra", 90), ("Tanisha Dey", 89)]
-            },
-            "AB-": {
-                "Low": [("Ritesh Sinha", 84), ("Lavanya Joshi", 82), ("Harsh Rawal", 80)],
-                "Medium": [("Sanya Mehra", 87), ("Vikas Nair", 85), ("Esha Sen", 83)],
-                "High": [("Akash Anand", 91), ("Meenal Kaul", 89), ("Dinesh Shetty", 86)]
-            },
-            "O+": {
-                "Low": [("Suresh Krishnan", 89), ("Ila Sharma", 85), ("Yash Dubey", 82)],
-                "Medium": [("Anjali Das", 91), ("Rajan Iyer", 88), ("Karan Kapoor", 85)],
-                "High": [("Shreya Rao", 95), ("Naveen Kumar", 92), ("Tina Mehta", 89)]
-            },
-            "O-": {
-                "Low": [("Nikhil Jain", 87), ("Vidya Pillai", 84), ("Rajveer Singh", 81)],
-                "Medium": [("Shravan Reddy", 90), ("Pallavi Verma", 87), ("Aarav Dutta", 84)],
-                "High": [("Ishaan Ali", 93), ("Namita Joshi", 89), ("Rishi Khurana", 86)]
-            }
-        }
-
-        matches = donor_db.get(blood_group, {}).get(urgency, [])
-        
-        if matches:
-            st.success("Top AI‑matched donors near you:")
-            for donor, score in matches:
-                st.markdown(f"✅ {donor} – Match Score: {score}%")
+        if not city.strip():
+            st.error("⚠ Please enter a valid city or pincode.")
         else:
-            st.warning("No matches found for the selected criteria.")
+            donor_db = {
+                "A+": {
+                    "Low": [("Anita Sharma", 91), ("Rohit Mehra", 87), ("Divya Iyer", 83)],
+                    "Medium": [("Karan Joshi", 93), ("Nidhi Patel", 89), ("Amit Rao", 85)],
+                    "High": [("Riya Kapoor", 96), ("Sarthak Jain", 92), ("Tanvi Verma", 90)]
+                },
+                "A-": {
+                    "Low": [("Sneha Sinha", 88), ("Manoj Kaul", 85), ("Kavya Desai", 82)],
+                    "Medium": [("Kritika Roy", 90), ("Jay Malhotra", 86), ("Farhan Ali", 84)],
+                    "High": [("Pooja Reddy", 94), ("Rakesh Yadav", 91), ("Meera Das", 89)]
+                },
+                "B+": {
+                    "Low": [("Ravi Shankar", 90), ("Leela Menon", 85), ("Nitin Deshpande", 83)],
+                    "Medium": [("Sonia Bhatia", 92), ("Raghav Shetty", 89), ("Simran Gill", 86)],
+                    "High": [("Aditya Sen", 95), ("Preeti Rawal", 91), ("Tushar Khanna", 88)]
+                },
+                "B-": {
+                    "Low": [("Mahesh Rao", 86), ("Reena Paul", 84), ("Neha Kapoor", 81)],
+                    "Medium": [("Gaurav Pillai", 89), ("Alisha Khan", 87), ("Arjun Singh", 85)],
+                    "High": [("Kriti Jain", 93), ("Deepak Nair", 90), ("Zoya Abraham", 87)]
+                },
+                "AB+": {
+                    "Low": [("Kabir Das", 88), ("Shruti Sen", 86), ("Devika Rao", 83)],
+                    "Medium": [("Om Prakash", 91), ("Ishita Nair", 88), ("Yusuf Pathan", 85)],
+                    "High": [("Veena Iyer", 94), ("Sameer Malhotra", 90), ("Tanisha Dey", 89)]
+                },
+                "AB-": {
+                    "Low": [("Ritesh Sinha", 84), ("Lavanya Joshi", 82), ("Harsh Rawal", 80)],
+                    "Medium": [("Sanya Mehra", 87), ("Vikas Nair", 85), ("Esha Sen", 83)],
+                    "High": [("Akash Anand", 91), ("Meenal Kaul", 89), ("Dinesh Shetty", 86)]
+                },
+                "O+": {
+                    "Low": [("Suresh Krishnan", 89), ("Ila Sharma", 85), ("Yash Dubey", 82)],
+                    "Medium": [("Anjali Das", 91), ("Rajan Iyer", 88), ("Karan Kapoor", 85)],
+                    "High": [("Shreya Rao", 95), ("Naveen Kumar", 92), ("Tina Mehta", 89)]
+                },
+                "O-": {
+                    "Low": [("Nikhil Jain", 87), ("Vidya Pillai", 84), ("Rajveer Singh", 81)],
+                    "Medium": [("Shravan Reddy", 90), ("Pallavi Verma", 87), ("Aarav Dutta", 84)],
+                    "High": [("Ishaan Ali", 93), ("Namita Joshi", 89), ("Rishi Khurana", 86)]
+                }
+            }
+
+            matches = donor_db.get(blood_group, {}).get(urgency, [])
+
+            if matches:
+                st.success("Top AI‑matched donors near you:")
+                for donor, score in matches:
+                    st.markdown(f"✅ {donor} – Match Score: {score}%")
+            else:
+                st.warning("No matches found for the selected criteria.")
 
     st.markdown("### 📞 Contact Details to Reach Donors")
     with st.form("contact_form"):
@@ -194,11 +190,3 @@ elif page == "About":
 # Footer
 st.markdown("---")
 st.caption("© 2025 LifeLink AI — Built for Humanity")
-
-
-
-
-
-
-
-
