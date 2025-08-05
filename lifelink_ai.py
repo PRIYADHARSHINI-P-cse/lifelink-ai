@@ -24,7 +24,7 @@ st.markdown("""
         /* Sidebar background and text */
         section[data-testid="stSidebar"] {
             background-color: #1e1e2f;
-            color: white;
+            color: black;
         }
 
         /* Ensure sidebar text is white */
@@ -194,6 +194,7 @@ elif page == "About":
 # Footer
 st.markdown("---")
 st.caption("© 2025 LifeLink AI — Built for Humanity")
+
 
 
 
