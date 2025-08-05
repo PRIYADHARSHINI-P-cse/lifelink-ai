@@ -3,39 +3,40 @@ import streamlit as st
 st.set_page_config(page_title="LifeLink AI", layout="centered")
 
 # Custom background and styling
+import streamlit as st
+
+# Apply custom CSS styles
 st.markdown("""
     <style>
-    .stApp {
-        background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)),
-                    url('https://images.pexels.com/photos/12193090/pexels-photo-12193090.jpeg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
+        /* Set the main content background to white and text to black */
+        .main {
+            background-color: white;
+            color: black;
+        }
 
-    .main .block-container {
-        background-color: rgba(255, 255, 255, 0.96);
-        padding: 2.5rem 2rem;
-        border-radius: 20px;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-        max-width: 760px;
-        margin: 6vh auto;
-    }
+        /* Sidebar background and text color */
+        section[data-testid="stSidebar"] {
+            background-color: #1e1e2f; /* dark sidebar */
+            color: white;
+        }
 
-    h1, h2, h3 { color: #b1003f; }
-    .stButton>button {
-        background-color: #b1003f;
-        color: black;
-        border: none;
-        border-radius: 10px;
-        padding: 0.5rem 1.5rem;
-        font-size: 1rem;
-    }
-    .stButton>button:hover {
-        background-color: #870031;
-    }
+        /* Sidebar text white */
+        .css-1v0mbdj, .css-10trblm {
+            color: white !important;
+        }
+
+        /* Header elements like h1, h2, etc., in main content area */
+        .main h1, .main h2, .main h3, .main h4, .main h5, .main h6, .main p, .main li, .main span {
+            color: black !important;
+        }
+
+        /* Optional: Make caption (footer) also black */
+        footer {
+            color: black !important;
+        }
     </style>
 """, unsafe_allow_html=True)
+
 
 # Sidebar
 st.sidebar.title("🩸 LifeLink AI")
@@ -185,6 +186,7 @@ elif page == "About":
 # Footer
 st.markdown("---")
 st.caption("© 2025 LifeLink AI — Built for Humanity")
+
 
 
 
