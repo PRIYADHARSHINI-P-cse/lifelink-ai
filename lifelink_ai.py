@@ -3,39 +3,47 @@ import streamlit as st
 st.set_page_config(page_title="LifeLink AI", layout="centered")
 
 # Custom background and styling
-import streamlit as st
-
-# Apply custom CSS styles
 st.markdown("""
     <style>
-        /* Set the main content background to white and text to black */
-        .main {
-            background-color: white;
-            color: black;
+        /* Set background image */
+        .stApp {
+            background: url("https://images.pexels.com/photos/12193090/pexels-photo-12193090.jpeg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
-        /* Sidebar background and text color */
+        /* Main content white with black text */
+        .main {
+            background-color: rgba(255, 255, 255, 0.85);
+            color: black;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        /* Sidebar background and text */
         section[data-testid="stSidebar"] {
-            background-color: #1e1e2f; /* dark sidebar */
+            background-color: #1e1e2f;
             color: white;
         }
 
-        /* Sidebar text white */
-        .css-1v0mbdj, .css-10trblm {
+        /* Ensure sidebar text is white */
+        .css-1v0mbdj, .css-10trblm, .stRadio > label {
             color: white !important;
         }
 
-        /* Header elements like h1, h2, etc., in main content area */
-        .main h1, .main h2, .main h3, .main h4, .main h5, .main h6, .main p, .main li, .main span {
+        /* Ensure main content headings and text are black */
+        .main h1, .main h2, .main h3, .main h4, .main h5, .main h6,
+        .main p, .main li, .main span {
             color: black !important;
         }
 
-        /* Optional: Make caption (footer) also black */
         footer {
             color: black !important;
         }
     </style>
 """, unsafe_allow_html=True)
+
 
 
 # Sidebar
@@ -186,6 +194,7 @@ elif page == "About":
 # Footer
 st.markdown("---")
 st.caption("© 2025 LifeLink AI — Built for Humanity")
+
 
 
 
